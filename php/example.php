@@ -2,125 +2,101 @@
 
 include 'common.php';
 
-$base_url = 'http://api.patinfo.cn/';
+$base_url = 'http://api.patinfo.cn';
 
-//$result = http_get_data($base_url . 'public.php', array('action' => 'server-time'));
-//$result = http_get_data($base_url . 'public.php', array('action' => 'currencies'));
-//$result = http_get_data($base_url . 'public.php', array('action' => 'markets'));
+//$result = http_get_data($base_url . '/public/server-time');
+//$result = http_get_data($base_url . '/public/currencies');
+//$result = http_get_data($base_url . '/public/markets');
 
-#market.trades
+#market.deals
 //$data = array(
-//    'action'=>'trades',
 //    'market'=>'ETHUSDT',
 //    'before' => 0,
 //    'limit' => 20,
 //);
-//$result = http_get_data($base_url . 'market.php', $data);
+//$result = http_get_data($base_url . '/market/deals', $data);
 
-#market ticker
+#market.ticker
 //$data = array(
-//    'action'=>'ticker',
 //    'market'=>'ETHUSDT',
 //);
-//$result = http_get_data($base_url . 'market.php', $data);
+//$result = http_get_data($base_url . '/market/ticker', $data);
 
+#market.depth
 //$data = array(
-//    'action'=>'depth',
 //    'market'=>'ETHUSDT',
-//    'level' => 'L20'
+//    'level' => 'L20',
+//    'merge' => '0.01'
 //);
-//$result = http_get_data($base_url . 'market.php', $data);
-
+//$result = http_get_data($base_url . '/market/depth', $data);
 
 $appkey = 'd9da98eace514a408460de2309c36174';
-//$appkey = 'd9da98eace514a408460de2309c36175';
 $appsecret = '76fa6ebc2bdb4cacbc8d37d066cec3ee';
 
-# balance
-$data = array(
-    'time' => 1533020283,//time(),
-    'appkey' => $appkey,
-    'action' => 'balance',
-);
-echo '<pre>';
-$data['signature'] = gen_sign($data, $appsecret);
-print_r($data);
-$result = http_get_data($base_url . 'accounts.php', $data);
+#account.balance
+//$data = array(
+//    'time' => 1533020283,//time(),
+//    'appkey' => $appkey,
+//);
+//$signature = gen_sign($data, $appsecret);
+//$result = http_get_data($base_url . '/account/balance', $data, $signature);
 
-#create_order
+
+#order.create_order->limit
 //$data = array(
 //    'time'      => time(),
 //    'appkey'    => $appkey,
-//    'action'    => 'create_order',
 //    'market'    => 'ETHUSDT',
 //    'side'      => 'buy',
 //    'type'      => 'limit', 
 //    'price'     => '32.00',
 //    'amount'    => '1'
 //);  
-//$data['signature'] = gen_sign($data, $appsecret);
-//$result = http_get_data($base_url . 'orders.php', $data);
+//$signature = gen_sign($data, $appsecret);
+//$result = http_get_data($base_url . '/orders/create_order', $data, $signature);
 
+#order.create_order->market
 //$data = array(
 //    'time'      => time(),
 //    'appkey'    => $appkey,
-//    'action'    => 'create_order',
 //    'market'    => 'ETHUSDT',
 //    'side'      => 'sell',
 //    'type'      => 'market', 
-//    'price'     => '30.00',
 //    'amount'    => '1'
 //);  
-//$data['signature'] = gen_sign($data, $appsecret);
-//$result = http_get_data($base_url . 'orders.php', $data);
+//$signature = gen_sign($data, $appsecret);
+//$result = http_get_data($base_url . '/orders/create_order', $data, $signature);
 
-#orders
+#order.list
 //$data = array(
 //    'time'      => time(),
 //    'appkey'    => $appkey,
-//    'action'    => 'list',
 //    'market'    => 'ETHUSDT',
 //    'states'     => 'submitted',
 //);  
-//$data['signature'] = gen_sign($data, $appsecret);
-//$result = http_get_data($base_url . 'orders.php', $data);
-////
+//$signature = gen_sign($data, $appsecret);
+//$result = http_get_data($base_url . '/orders/list', $data, $signature);
 
-////
-#cancel order
+#order.cancel
 //$data = array(
 //    'time'      => time(),
 //    'appkey'    => $appkey,
-//    'action'    => 'order_cancel',
 //    'market'    => 'ETHUSDT',
-//    'order_id'     => 11,
+//    'order_id'     => 259,
 //);  
-//$data['signature'] = gen_sign($data, $appsecret);
-//$result = http_get_data($base_url . 'orders.php', $data);
+//$signature = gen_sign($data, $appsecret);
+//$result = http_get_data($base_url . '/orders/cancel', $data, $signature);
 
-////#order_detail
-//$data = array(
-//    'time'      => time(),
-//    'appkey'    => $appkey,
-//    'action'    => 'order_detail',
-//    'market'    => 'ETHUSDT',
-//    'order_id'     => 11,
-//);  
-//$data['signature'] = gen_sign($data, $appsecret);
-//$result = http_get_data($base_url . 'orders.php', $data);
-
-#order_finished_detail
-//$data = array(
-//    'time'      => time(),
-//    'appkey'    => $appkey,
-//    'action'    => 'finished_detail',
-//    'market'    => 'ETHUSDT',
-//    'order_id'  => 1,
-//);  
-//$data['signature'] = gen_sign($data, $appsecret);
-//$result = http_get_data($base_url . 'orders.php', $data);
-
+#order_detail
+$data = array(
+    'time'      => time(),
+    'appkey'    => $appkey,
+    'market'    => 'ETHUSDT',
+    'order_id'     => 11,
+);  
+$signature = gen_sign($data, $appsecret);
+$result = http_get_data($base_url . '/orders/order_detail', $data, $signature);
 
 var_dump($result);
-echo '<pre>';
-print_r(json_decode($result, true));
+//echo '<pre>';
+//print_r(json_decode($result, true));
